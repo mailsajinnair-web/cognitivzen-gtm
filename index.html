@@ -203,13 +203,52 @@
             <p><strong>Scope:</strong> 3-week requirements + 12-week build + 4-week pilot = $500K–$1.2M; ongoing $25K–$45K/month.</p>
         </div>
 
-        <h3>Technology Stack & Integration</h3>
+        <h3>Technology Stack & Integration Architecture</h3>
+        <p><strong>CognitivZen's recommended tech stack for automotive aftermarket data modernization:</strong></p>
+        
         <table>
-            <tr><th>Platform</th><th>Use Case</th><th>Cost</th><th>Enterprise Cost</th><th>Speed</th></tr>
-            <tr><td><strong>MuleSoft</strong></td><td>Enterprise data fabric (Tier 1)</td><td>$100K–$250K/year</td><td>$500K–$2M+</td><td>12–18 mo</td></tr>
-            <tr><td><strong>Boomi</strong></td><td>Faster integration (Tier 2)</td><td>$50K–$120K/year</td><td>$200K–$600K</td><td>6–10 wk</td></tr>
+            <tr><th>Layer</th><th>Primary Platform</th><th>Integration Capability</th><th>Typical Cost (Annual)</th></tr>
+            <tr><td><strong>Data Integration Backbone</strong></td><td>MuleSoft Anypoint Platform</td><td>Connects SAP, Manhattan WMS, Shopify, EDI feeds, pricing systems real-time</td><td>$100K–$250K</td></tr>
+            <tr><td><strong>Integration Alternative (Lower Cost)</strong></td><td>Boomi AtomSphere</td><td>Pre-built connectors for automotive ERP + WMS; cloud-native, faster deployment</td><td>$50K–$120K</td></tr>
+            <tr><td><strong>Data Warehouse / Lake</strong></td><td>Snowflake + dbt</td><td>Real-time streaming from MuleSoft/Boomi; schema transformation; data lineage</td><td>$75K–$200K</td></tr>
+            <tr><td><strong>AI/ML / Forecasting</strong></td><td>Databricks ML + Python (XGBoost, Prophet)</td><td>Demand forecasting, inventory optimization, price elasticity modeling</td><td>$60K–$150K</td></tr>
+            <tr><td><strong>BI / Analytics Dashboard</strong></td><td>Tableau or Power BI</td><td>Real-time inventory visibility, forecasting dashboards, executive reporting</td><td>$30K–$80K</td></tr>
+            <tr><td><strong>Portal / Digital Frontend</strong></td><td>React + Node.js microservices</td><td>Custom dealer portal, personalization, mobile-first design</td><td>$150K–$300K (custom build)</td></tr>
         </table>
-        <p><strong>Recommendation:</strong> Boomi for Tier 2 (faster, lower cost, sufficient). MuleSoft for Tier 1 complex estates.</p>
+
+        <h3>Why MuleSoft or Boomi?</h3>
+        <div class="card">
+            <h4>MuleSoft: Enterprise-Grade</h4>
+            <p><strong>Capability:</strong> Pre-built connectors to SAP (ECC + S/4HANA), Manhattan, E2open EDI, Shopify. Real-time sync capability.</p>
+            <p><strong>Licensing:</strong> Gold tier $150K–$250K; enterprise deployments $500K–$2M+.</p>
+            <p><strong>Implementation:</strong> Typically 2–3x licensing cost.</p>
+            <p><strong>Best for:</strong> Mid-market with complex legacy systems (Transtar, Keystone, Parts Authority scale).</p>
+        </div>
+
+        <div class="card">
+            <h4>Boomi: Faster Time-to-Value</h4>
+            <p><strong>Speed:</strong> 4–6 weeks vs. 8–10 weeks (MuleSoft).</p>
+            <p><strong>Architecture:</strong> Cloud-native, lower infrastructure overhead.</p>
+            <p><strong>Licensing:</strong> $50K–$120K annually + $5K–$18K per connection.</p>
+            <p><strong>Implementation:</strong> 1.5–2.5x licensing cost.</p>
+            <p><strong>Best for:</strong> Distributors with simpler IT stacks (Turn 14, Summit Racing scale). Typically 30–40% cheaper total cost of ownership than MuleSoft for same use case.</p>
+        </div>
+
+        <h3>Total Stack Cost Estimate (Year 1 Implementation + Licensing)</h3>
+        <ul>
+            <li><strong>MuleSoft-based approach:</strong> $450K–$1M (integration core + data warehouse + ML + portal)</li>
+            <li><strong>Boomi-based approach:</strong> $300K–$650K (faster, leaner, still production-grade)</li>
+            <li><strong>CognitivZen phased delivery:</strong> Phase 1 (real-time integration + dashboard): $300K–$500K. Phase 2 (AI forecasting + portal modernization): $200K–$400K optional.</li>
+        </ul>
+
+        <h3>Why CognitivZen Wins vs. These Competitors</h3>
+        <table>
+            <tr><th>Dimension</th><th>Caelius, NeuraFlash, Versable</th><th>CognitivZen</th></tr>
+            <tr><td><strong>Speed to Value</strong></td><td>3–6 months (medium complexity)</td><td>4–8 weeks (data pipeline first; phased approach)</td></tr>
+            <tr><td><strong>Cost</strong></td><td>$400K–$1M typical engagement</td><td>$300K–$800K per phase (lower entry point)</td></tr>
+            <tr><td><strong>Entry Point</strong></td><td>Supply chain optimization (Caelius), AI/ML projects (NeuraFlash), data infra (Versable)</td><td>Real-time inventory + demand forecasting + portal (integrated stack)</td></tr>
+            <tr><td><strong>Automotive Aftermarket Focus</strong></td><td>Limited or tangential; primarily supplier-facing or general logistics</td><td>Distributor-specific; understands retailer/dealer economics</td></tr>
+        </table>
 
         <h3>Competitive Landscape</h3>
         <table>
