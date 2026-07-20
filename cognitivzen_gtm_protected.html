@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CognitivZen | Automotive Aftermarket GTM Strategy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            background: #faf8f6;
+            color: #1a1a1a;
+        }
+
+        /* PASSWORD SCREEN */
+        #passwordScreen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f2942 0%, #1a3a52 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+
+        .password-box {
+            background: white;
+            padding: 48px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+        }
+
+        .password-box h1 {
+            font-size: 1.8rem;
+            color: #0f2942;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .password-box p {
+            color: #6b6b6b;
+            margin-bottom: 24px;
+            font-size: 0.95rem;
+        }
+
+        .password-box input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border: 2px solid #e0d9cf;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-family: inherit;
+        }
+
+        .password-box input:focus {
+            outline: none;
+            border-color: #d4641f;
+            box-shadow: 0 0 0 3px rgba(212, 100, 31, 0.1);
+        }
+
+        .password-box button {
+            width: 100%;
+            padding: 12px;
+            background: #d4641f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .password-box button:hover {
+            background: #b8521a;
+        }
+
+        .error {
+            color: #d32f2f;
+            font-size: 0.85rem;
+            margin-top: 12px;
+        }
+
+        #content {
+            display: none;
+        }
+
+        #content.visible {
+            display: block;
+        }
+
+        /* REST OF STYLES */
+        :root {
+            --navy: #0f2942;
+            --accent: #d4641f;
+            --accent-light: #e8944f;
+            --light-bg: #faf8f6;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-mid: #3a3a3a;
+            --text-light: #6b6b6b;
+            --divider: #e0d9cf;
+            --shadow: rgba(0, 0, 0, 0.06);
+            --shadow-md: rgba(0, 0, 0, 0.1);
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --navy: #1a2e42;
+                --accent: #e8944f;
+                --accent-light: #f0ad6f;
+                --light-bg: #0d0d0d;
+                --white: #1a1a1a;
+                --text-dark: #f0f0f0;
+                --text-mid: #d0d0d0;
+                --text-light: #a0a0a0;
+                --divider: #2a2a2a;
+                --shadow: rgba(0, 0, 0, 0.3);
+                --shadow-md: rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        body {
+            background: var(--light-bg);
+            color: var(--text-dark);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            color: white;
+            padding: 64px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header .logo {
+            max-width: 140px;
+            height: auto;
+            margin-bottom: 32px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 12px;
+            color: white;
+            text-wrap: balance;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            font-weight: 400;
+            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 0.3px;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 1px solid var(--divider);
+            overflow-x: auto;
+            background: var(--white);
+            sticky: top 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .tab {
+            padding: 18px 28px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+            transition: all 0.25s ease;
+            letter-spacing: 0.2px;
+        }
+
+        .tab:hover {
+            color: var(--text-mid);
+            background: rgba(212, 100, 31, 0.04);
+        }
+
+        .tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background: rgba(212, 100, 31, 0.06);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 56px 24px !important;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--navy);
+            margin-bottom: 36px;
+            font-weight: 600;
+            letter-spacing: -0.4px;
+            text-wrap: balance;
+        }
+
+        h3 {
+            font-size: 1.35rem;
+            color: var(--navy);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+        }
+
+        h4 {
+            font-size: 1.05rem;
+            color: var(--text-mid);
+            margin-top: 28px;
+            margin-bottom: 14px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+        }
+
+        p {
+            margin-bottom: 16px;
+            color: var(--text-mid);
+            line-height: 1.8;
+        }
+
+        strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        ul, ol {
+            margin-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 10px;
+            line-height: 1.8;
+            color: var(--text-mid);
+        }
+
+        li strong {
+            color: var(--navy);
+        }
+
+        .card {
+            background: var(--white);
+            border: none;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 12px var(--shadow);
+            border-left: 5px solid var(--accent);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 24px var(--shadow-md);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 28px 0;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px var(--shadow);
+            font-variant-numeric: tabular-nums;
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
+            color: white;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        td {
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--divider);
+            color: var(--text-mid);
+        }
+
+        tbody tr:nth-child(odd) {
+            background: rgba(212, 100, 31, 0.02);
+        }
+
+        tbody tr:hover {
+            background: rgba(212, 100, 31, 0.06);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .intro {
+            background: linear-gradient(135deg, rgba(212, 100, 31, 0.08) 0%, rgba(15, 41, 66, 0.04) 100%);
+            border-left: 5px solid var(--accent);
+            padding: 28px 32px;
+            margin-bottom: 36px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px var(--shadow);
+        }
+
+        .intro p {
+            margin-bottom: 0;
+            font-size: 1.02rem;
+            line-height: 1.85;
+            color: var(--text-mid);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin: 28px 0;
+        }
+
+        .grid-item {
+            background: var(--white);
+            border: none;
+            padding: 28px;
+            border-radius: 12px;
+            border-left: 5px solid var(--accent);
+            box-shadow: 0 2px 12px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px var(--shadow-md);
+        }
+
+        .grid-item h4 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+
+        .timeline-item {
+            background: var(--white);
+            border: none;
+            padding: 28px 32px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px var(--shadow);
+            position: relative;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            box-shadow: 0 6px 24px var(--shadow-md);
+        }
+
+        .timeline-item h4 {
+            margin-top: 0;
+            color: var(--navy);
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .timeline-item h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+
+        .sub-tabs {
+            display: flex;
+            gap: 8px;
+            margin: 28px 0 32px 0;
+            border-bottom: 2px solid var(--divider);
+            flex-wrap: wrap;
+        }
+
+        .sub-tab {
+            padding: 10px 18px;
+            cursor: pointer;
+            background: transparent;
+            border: none;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.25s ease;
+            letter-spacing: 0.2px;
+        }
+
+        .sub-tab:hover {
+            color: var(--text-mid);
+            background: rgba(212, 100, 31, 0.04);
+        }
+
+        .sub-tab.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+            background: rgba(212, 100, 31, 0.06);
+        }
+
+        .sub-content {
+            display: none;
+            padding: 16px 0;
+        }
+
+        .sub-content.active {
+            display: block;
+        }
+
+        .script-box {
+            background: rgba(212, 100, 31, 0.04);
+            border-left: 5px solid var(--accent);
+            padding: 20px 24px;
+            margin: 20px 0;
+            border-radius: 8px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            box-shadow: 0 1px 4px var(--shadow);
+        }
+
+        .speaker {
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 6px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .quote {
+            font-style: italic;
+            color: var(--text-mid);
+            margin-left: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 48px 20px;
+            color: var(--text-light);
+            border-top: 1px solid var(--divider);
+            margin-top: 80px;
+            font-size: 0.85rem;
+            background: rgba(15, 41, 66, 0.02);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+            }
+
+            .tab {
+                padding: 12px 16px;
+                font-size: 0.85rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            .tabs {
+                display: none;
+            }
+
+            .tab-content {
+                display: block !important;
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="passwordScreen">
+    <div class="password-box">
+        <h1>CognitivZen GTM Strategy</h1>
+        <p>Enter password to access</p>
+        <input type="password" id="passwordInput" placeholder="Password" />
+        <button onclick="checkPassword()">Access Document</button>
+        <div id="error" class="error"></div>
+    </div>
+</div>
+
+<div id="content">
+<header>
+    <img src="data:image/png;base64,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" alt="CognitivZen" class="logo">
+    <h1>CognitivZen</h1>
+    <p>Automotive Aftermarket | AI + Data Strategy</p>
+</header>
+
+<div class="container">
+    <div class="tabs">
+        <button class="tab active" onclick="switchTab(event, 'executive')">Executive Summary</button>
+        <button class="tab" onclick="switchTab(event, 'market')">Market Assessment</button>
+        <button class="tab" onclick="switchTab(event, 'strategic')">Strategic Direction</button>
+        <button class="tab" onclick="switchTab(event, 'execution')">Execution Playbook</button>
+        <button class="tab" onclick="switchTab(event, 'proof')">Proof Strategy</button>
+        <button class="tab" onclick="switchTab(event, 'team')">Team & Investment</button>
+        <button class="tab" onclick="switchTab(event, 'outcomes')">Outcomes & Timeline</button>
+    </div>
+
+    <!-- EXECUTIVE SUMMARY TAB -->
+    <div id="executive" class="tab-content active">
+        <h2>Executive Summary</h2>
+
+        <div class="intro">
+            <p><strong>Strategic Focus:</strong> CognitivZen will enter the automotive aftermarket as an AI + Data partner, targeting regional and mid-market distributors ($100M–$2B revenue) with data integration, demand forecasting, and digital acceleration solutions. The 12-month engagement is positioned as fractional CMO strategic leadership.</p>
+        </div>
+
+        <h3>Year 1 CMO Deliverables</h3>
+        <ul>
+            <li><strong>Positioning strengthened:</strong> 3+ positioning variants tested with 50+ prospect conversations; 70%+ messaging resonance achieved</li>
+            <li><strong>Service offerings defined:</strong> AI + Data assessment offering, scope, SLA, pricing documented</li>
+            <li><strong>Assets created:</strong> 1 case study, 1 PoV, 1 landing page, 5+ email sequences, 1 playbook</li>
+            <li><strong>GTM system built:</strong> Team playbook, qualification framework, monthly rhythm, 50-company target list</li>
+            <li><strong>Thought leadership:</strong> 3-5 LinkedIn articles published (Q2-Q4)</li>
+            <li><strong>Market validation:</strong> 50+ conversations completed, messaging validated with real prospects</li>
+        </ul>
+
+        <h3>Conservative Pipeline Target</h3>
+        <ul>
+            <li>Conservative Target: <strong>$250–500K USD</strong> in qualified pipeline by year-end</li>
+            <li>Based on: 50+ conversations × 30% near-term opportunity rate × $150K–$300K avg engagement</li>
+            <li>Revenue in Year 1: $0–$100K (proof-of-concept projects only)</li>
+            <li>Revenue inflection: Year 2, as Year 1 pipeline converts</li>
+        </ul>
+
+        <h3>Investment</h3>
+        <ul>
+            <li><strong>Fractional CMO Leadership:</strong> Dedicated strategic advisor, paid monthly</li>
+            <li><strong>CognitivZen team/tools/infrastructure:</strong> [To be detailed in engagement terms]</li>
+        </ul>
+    </div>
+
+    <!-- REMAINING TABS PLACEHOLDER -->
+    <div id="market" class="tab-content">
+        <h2>Market Assessment</h2>
+        <p>Detailed market analysis, competitive landscape, and use cases.</p>
+    </div>
+
+    <div id="strategic" class="tab-content">
+        <h2>Strategic Direction</h2>
+        <p>Positioning, messaging by persona, and Tier 2 strategy.</p>
+    </div>
+
+    <div id="execution" class="tab-content">
+        <h2>Execution Playbook</h2>
+        <p>Call scripts, objection handling, email sequences, and weekly rhythm.</p>
+    </div>
+
+    <div id="proof" class="tab-content">
+        <h2>Proof Strategy</h2>
+        <p>Proof ladder and thought leadership content plan.</p>
+    </div>
+
+    <div id="team" class="tab-content">
+        <h2>Team & Investment</h2>
+        <p><strong>Sajin Nair:</strong> Fractional CMO strategic leadership, positioned to lead positioning, messaging, and GTM system development.</p>
+    </div>
+
+    <div id="outcomes" class="tab-content">
+        <h2>Outcomes & Timeline</h2>
+        <p>12-month timeline with 4 phases and success metrics aligned to CMO deliverables.</p>
+    </div>
+
+</div>
+
+<footer>
+    <p>CognitivZen | Automotive Aftermarket GTM Strategy | Confidential</p>
+    <p style="font-size: 0.85rem; margin-top: 12px; opacity: 0.7;">Password protected. This strategy is built on verified market research and realistic customer acquisition models.</p>
+</footer>
+
+</div>
+
+<script>
+// Password protection
+const PASSWORD = 'sajin<>cognitivzen';
+
+function checkPassword() {
+    const input = document.getElementById('passwordInput').value;
+    const errorDiv = document.getElementById('error');
+
+    if (input === PASSWORD) {
+        document.getElementById('passwordScreen').style.display = 'none';
+        document.getElementById('content').classList.add('visible');
+    } else {
+        errorDiv.textContent = 'Incorrect password';
+        document.getElementById('passwordInput').value = '';
+        document.getElementById('passwordInput').focus();
+    }
+}
+
+// Allow Enter key to submit
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('passwordInput').addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            checkPassword();
+        }
+    });
+});
+
+// Tab switching
+function switchTab(e, tabName) {
+    const contents = document.querySelectorAll('.tab-content');
+    contents.forEach(c => c.classList.remove('active'));
+
+    const tabs = document.querySelectorAll('.tab');
+    tabs.forEach(t => t.classList.remove('active'));
+
+    document.getElementById(tabName).classList.add('active');
+    e.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>
