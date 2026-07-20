@@ -5,542 +5,158 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CognitivZen | Automotive Aftermarket GTM Strategy</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #faf8f6; color: #1a1a1a; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: #faf8f6;
-            color: #1a1a1a;
-        }
-
-        /* PASSWORD SCREEN */
         #passwordScreen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, #0f2942 0%, #1a3a52 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
+            display: flex; align-items: center; justify-content: center; z-index: 10000;
         }
-
         .password-box {
-            background: white;
-            padding: 48px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 400px;
-            width: 90%;
+            background: white; padding: 48px; border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3); text-align: center;
+            max-width: 400px; width: 90%;
         }
-
-        .password-box h1 {
-            font-size: 1.8rem;
-            color: #0f2942;
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-
-        .password-box p {
-            color: #6b6b6b;
-            margin-bottom: 24px;
-            font-size: 0.95rem;
-        }
-
+        .password-box h1 { font-size: 1.8rem; color: #0f2942; margin-bottom: 12px; font-weight: 600; }
+        .password-box p { color: #6b6b6b; margin-bottom: 24px; font-size: 0.95rem; }
         .password-box input {
-            width: 100%;
-            padding: 12px 16px;
-            font-size: 1rem;
-            border: 2px solid #e0d9cf;
-            border-radius: 8px;
-            margin-bottom: 16px;
-            font-family: inherit;
+            width: 100%; padding: 12px 16px; font-size: 1rem;
+            border: 2px solid #e0d9cf; border-radius: 8px; margin-bottom: 16px; font-family: inherit;
         }
-
-        .password-box input:focus {
-            outline: none;
-            border-color: #d4641f;
-            box-shadow: 0 0 0 3px rgba(212, 100, 31, 0.1);
-        }
-
+        .password-box input:focus { outline: none; border-color: #d4641f; box-shadow: 0 0 0 3px rgba(212,100,31,0.1); }
         .password-box button {
-            width: 100%;
-            padding: 12px;
-            background: #d4641f;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            width: 100%; padding: 12px; background: #d4641f; color: white;
+            border: none; border-radius: 8px; font-size: 1rem; font-weight: 600;
+            cursor: pointer; transition: background 0.3s ease;
         }
+        .password-box button:hover { background: #b8521a; }
+        .error { color: #d32f2f; font-size: 0.85rem; margin-top: 12px; }
 
-        .password-box button:hover {
-            background: #b8521a;
-        }
+        #content { display: none; }
+        #content.visible { display: block; }
 
-        .error {
-            color: #d32f2f;
-            font-size: 0.85rem;
-            margin-top: 12px;
-        }
-
-        #content {
-            display: none;
-        }
-
-        #content.visible {
-            display: block;
-        }
-
-        /* REST OF STYLES */
         :root {
-            --navy: #0f2942;
-            --accent: #d4641f;
-            --accent-light: #e8944f;
-            --light-bg: #faf8f6;
-            --white: #ffffff;
-            --text-dark: #1a1a1a;
-            --text-mid: #3a3a3a;
-            --text-light: #6b6b6b;
-            --divider: #e0d9cf;
-            --shadow: rgba(0, 0, 0, 0.06);
-            --shadow-md: rgba(0, 0, 0, 0.1);
+            --navy: #0f2942; --accent: #d4641f; --accent-light: #e8944f;
+            --light-bg: #faf8f6; --white: #ffffff; --text-dark: #1a1a1a;
+            --text-mid: #3a3a3a; --text-light: #6b6b6b; --divider: #e0d9cf;
+            --shadow: rgba(0,0,0,0.06); --shadow-md: rgba(0,0,0,0.1);
         }
 
         @media (prefers-color-scheme: dark) {
             :root {
-                --navy: #1a2e42;
-                --accent: #e8944f;
-                --accent-light: #f0ad6f;
-                --light-bg: #0d0d0d;
-                --white: #1a1a1a;
-                --text-dark: #f0f0f0;
-                --text-mid: #d0d0d0;
-                --text-light: #a0a0a0;
-                --divider: #2a2a2a;
-                --shadow: rgba(0, 0, 0, 0.3);
-                --shadow-md: rgba(0, 0, 0, 0.4);
+                --navy: #1a2e42; --accent: #e8944f; --accent-light: #f0ad6f;
+                --light-bg: #0d0d0d; --white: #1a1a1a; --text-dark: #f0f0f0;
+                --text-mid: #d0d0d0; --text-light: #a0a0a0; --divider: #2a2a2a;
+                --shadow: rgba(0,0,0,0.3); --shadow-md: rgba(0,0,0,0.4);
             }
         }
 
-        body {
-            background: var(--light-bg);
-            color: var(--text-dark);
-            line-height: 1.7;
-            font-size: 15px;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
+        body { background: var(--light-bg); color: var(--text-dark); line-height: 1.7; font-size: 15px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
         header {
             background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
-            color: white;
-            padding: 64px 20px;
-            text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white; padding: 64px 20px; text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
-
         header .logo {
-            max-width: 140px;
-            height: auto;
-            margin-bottom: 32px;
-            background: rgba(255, 255, 255, 0.95);
-            padding: 16px 20px;
-            border-radius: 12px;
-            display: inline-block;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            max-width: 140px; height: auto; margin-bottom: 32px;
+            background: rgba(255,255,255,0.95); padding: 16px 20px;
+            border-radius: 12px; display: inline-block;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.15);
         }
-
-        header h1 {
-            font-size: 2.8rem;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 12px;
-            color: white;
-            text-wrap: balance;
-        }
-
-        header p {
-            font-size: 1.15rem;
-            font-weight: 400;
-            opacity: 0.9;
-            color: rgba(255, 255, 255, 0.95);
-            letter-spacing: 0.3px;
-        }
+        header h1 { font-size: 2.8rem; font-weight: 600; letter-spacing: -0.5px; margin-bottom: 12px; }
+        header p { font-size: 1.15rem; font-weight: 400; opacity: 0.9; }
 
         .tabs {
-            display: flex;
-            gap: 0;
-            border-bottom: 1px solid var(--divider);
-            overflow-x: auto;
-            background: var(--white);
-            sticky: top 0;
-            z-index: 100;
-            box-shadow: 0 2px 8px var(--shadow);
+            display: flex; gap: 0; border-bottom: 1px solid var(--divider);
+            overflow-x: auto; background: var(--white); sticky: top 0;
+            z-index: 100; box-shadow: 0 2px 8px var(--shadow);
         }
-
         .tab {
-            padding: 18px 28px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            font-size: 0.95rem;
-            font-weight: 500;
-            white-space: nowrap;
-            border-bottom: 3px solid transparent;
-            transition: all 0.25s ease;
-            letter-spacing: 0.2px;
+            padding: 18px 28px; cursor: pointer; background: transparent;
+            border: none; color: var(--text-light); font-size: 0.95rem;
+            font-weight: 500; white-space: nowrap;
+            border-bottom: 3px solid transparent; transition: all 0.25s ease;
         }
-
-        .tab:hover {
-            color: var(--text-mid);
-            background: rgba(212, 100, 31, 0.04);
-        }
-
-        .tab.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-            background: rgba(212, 100, 31, 0.06);
-        }
+        .tab:hover { color: var(--text-mid); background: rgba(212,100,31,0.04); }
+        .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 
         .tab-content {
-            display: none;
-            padding: 56px 24px !important;
-            animation: fadeIn 0.3s ease;
+            display: none; padding: 56px 24px !important; animation: fadeIn 0.3s ease;
         }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        h2 {
-            font-size: 2.2rem;
-            color: var(--navy);
-            margin-bottom: 36px;
-            font-weight: 600;
-            letter-spacing: -0.4px;
-            text-wrap: balance;
-        }
-
-        h3 {
-            font-size: 1.35rem;
-            color: var(--navy);
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-weight: 600;
-            letter-spacing: 0.1px;
-        }
-
-        h4 {
-            font-size: 1.05rem;
-            color: var(--text-mid);
-            margin-top: 28px;
-            margin-bottom: 14px;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-        }
-
-        p {
-            margin-bottom: 16px;
-            color: var(--text-mid);
-            line-height: 1.8;
-        }
-
-        strong {
-            color: var(--navy);
-            font-weight: 600;
-        }
-
-        ul, ol {
-            margin-left: 24px;
-            margin-bottom: 16px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            line-height: 1.8;
-            color: var(--text-mid);
-        }
-
-        li strong {
-            color: var(--navy);
-        }
+        h2 { font-size: 2.2rem; color: var(--navy); margin-bottom: 36px; font-weight: 600; }
+        h3 { font-size: 1.35rem; color: var(--navy); margin-top: 40px; margin-bottom: 20px; font-weight: 600; }
+        h4 { font-size: 1.05rem; color: var(--text-mid); margin-top: 28px; margin-bottom: 14px; font-weight: 600; }
+        p { margin-bottom: 16px; color: var(--text-mid); line-height: 1.8; }
+        strong { color: var(--navy); font-weight: 600; }
+        ul, ol { margin-left: 24px; margin-bottom: 16px; }
+        li { margin-bottom: 10px; line-height: 1.8; color: var(--text-mid); }
 
         .card {
-            background: var(--white);
-            border: none;
-            border-radius: 12px;
-            padding: 28px 32px;
-            margin-bottom: 24px;
-            box-shadow: 0 2px 12px var(--shadow);
-            border-left: 5px solid var(--accent);
-            transition: box-shadow 0.3s ease;
+            background: var(--white); border: none; border-radius: 12px;
+            padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 2px 12px var(--shadow);
+            border-left: 5px solid var(--accent); transition: box-shadow 0.3s ease;
         }
-
-        .card:hover {
-            box-shadow: 0 6px 24px var(--shadow-md);
-        }
+        .card:hover { box-shadow: 0 6px 24px var(--shadow-md); }
 
         table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 28px 0;
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
+            width: 100%; border-collapse: collapse; margin: 28px 0;
+            background: var(--white); border-radius: 12px; overflow: hidden;
             box-shadow: 0 2px 12px var(--shadow);
-            font-variant-numeric: tabular-nums;
         }
-
         th {
             background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%);
-            color: white;
-            padding: 16px 20px;
-            text-align: left;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.6px;
+            color: white; padding: 16px 20px; text-align: left;
+            font-weight: 600; font-size: 0.9rem; text-transform: uppercase;
         }
-
-        td {
-            padding: 14px 20px;
-            border-bottom: 1px solid var(--divider);
-            color: var(--text-mid);
-        }
-
-        tbody tr:nth-child(odd) {
-            background: rgba(212, 100, 31, 0.02);
-        }
-
-        tbody tr:hover {
-            background: rgba(212, 100, 31, 0.06);
-        }
-
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
+        td { padding: 14px 20px; border-bottom: 1px solid var(--divider); color: var(--text-mid); }
+        tbody tr:nth-child(odd) { background: rgba(212,100,31,0.02); }
 
         .intro {
-            background: linear-gradient(135deg, rgba(212, 100, 31, 0.08) 0%, rgba(15, 41, 66, 0.04) 100%);
-            border-left: 5px solid var(--accent);
-            padding: 28px 32px;
-            margin-bottom: 36px;
-            border-radius: 12px;
-            box-shadow: 0 2px 8px var(--shadow);
-        }
-
-        .intro p {
-            margin-bottom: 0;
-            font-size: 1.02rem;
-            line-height: 1.85;
-            color: var(--text-mid);
+            background: linear-gradient(135deg, rgba(212,100,31,0.08) 0%, rgba(15,41,66,0.04) 100%);
+            border-left: 5px solid var(--accent); padding: 28px 32px;
+            margin-bottom: 36px; border-radius: 12px; box-shadow: 0 2px 8px var(--shadow);
         }
 
         .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin: 28px 0;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px; margin: 28px 0;
         }
-
         .grid-item {
-            background: var(--white);
-            border: none;
-            padding: 28px;
-            border-radius: 12px;
-            border-left: 5px solid var(--accent);
+            background: var(--white); border: none; padding: 28px;
+            border-radius: 12px; border-left: 5px solid var(--accent);
             box-shadow: 0 2px 12px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .grid-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px var(--shadow-md);
-        }
-
-        .grid-item h4 {
-            margin-top: 0;
-            margin-bottom: 12px;
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        .grid-item p {
-            font-size: 0.95rem;
-        }
-
-        .timeline {
-            position: relative;
-            margin: 40px 0;
         }
 
         .timeline-item {
-            background: var(--white);
-            border: none;
-            padding: 28px 32px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--accent);
-            border-radius: 12px;
-            box-shadow: 0 2px 12px var(--shadow);
-            position: relative;
-            transition: box-shadow 0.3s ease;
-        }
-
-        .timeline-item:hover {
-            box-shadow: 0 6px 24px var(--shadow-md);
-        }
-
-        .timeline-item h4 {
-            margin-top: 0;
-            color: var(--navy);
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .timeline-item h4::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            border: 3px solid var(--white);
-            box-shadow: 0 0 0 2px var(--accent);
-        }
-
-        .sub-tabs {
-            display: flex;
-            gap: 8px;
-            margin: 28px 0 32px 0;
-            border-bottom: 2px solid var(--divider);
-            flex-wrap: wrap;
-        }
-
-        .sub-tab {
-            padding: 10px 18px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 500;
-            border-bottom: 3px solid transparent;
-            transition: all 0.25s ease;
-            letter-spacing: 0.2px;
-        }
-
-        .sub-tab:hover {
-            color: var(--text-mid);
-            background: rgba(212, 100, 31, 0.04);
-        }
-
-        .sub-tab.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-            background: rgba(212, 100, 31, 0.06);
-        }
-
-        .sub-content {
-            display: none;
-            padding: 16px 0;
-        }
-
-        .sub-content.active {
-            display: block;
+            background: var(--white); border: none; padding: 28px 32px;
+            margin-bottom: 20px; border-left: 5px solid var(--accent);
+            border-radius: 12px; box-shadow: 0 2px 12px var(--shadow);
         }
 
         .script-box {
-            background: rgba(212, 100, 31, 0.04);
-            border-left: 5px solid var(--accent);
-            padding: 20px 24px;
-            margin: 20px 0;
-            border-radius: 8px;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.7;
-            box-shadow: 0 1px 4px var(--shadow);
+            background: rgba(212,100,31,0.04); border-left: 5px solid var(--accent);
+            padding: 20px 24px; margin: 20px 0; border-radius: 8px;
+            font-size: 0.95rem; line-height: 1.7; box-shadow: 0 1px 4px var(--shadow);
         }
-
-        .speaker {
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 6px;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .quote {
-            font-style: italic;
-            color: var(--text-mid);
-            margin-left: 8px;
-        }
+        .speaker { font-weight: 600; color: var(--accent); margin-bottom: 6px; font-size: 0.9rem; }
+        .quote { font-style: italic; color: var(--text-mid); margin-left: 8px; }
 
         footer {
-            text-align: center;
-            padding: 48px 20px;
-            color: var(--text-light);
-            border-top: 1px solid var(--divider);
-            margin-top: 80px;
-            font-size: 0.85rem;
-            background: rgba(15, 41, 66, 0.02);
+            text-align: center; padding: 48px 20px; color: var(--text-light);
+            border-top: 1px solid var(--divider); margin-top: 80px;
+            font-size: 0.85rem; background: rgba(15,41,66,0.02);
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.4rem;
-            }
-
-            .tabs {
-                flex-wrap: wrap;
-            }
-
-            .tab {
-                padding: 12px 16px;
-                font-size: 0.85rem;
-            }
-
-            .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media print {
-            .tabs {
-                display: none;
-            }
-
-            .tab-content {
-                display: block !important;
-                page-break-before: always;
-            }
+            header h1 { font-size: 1.8rem; }
+            h2 { font-size: 1.4rem; }
+            .tab { padding: 12px 16px; font-size: 0.85rem; }
         }
     </style>
 </head>
@@ -558,7 +174,7 @@
 
 <div id="content">
 <header>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAADR8AAALmCAYAAABxOALGAAAACXBIWXMAAC4jAAAuIwF4pT92AAAKT2lDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjanVNnVFPpFj333vRCS4iAlEtvUhUIIFJCi4AUkSYqIQkQSoghodkVUcERRUUEG8igiAOOjoCMFVEsDIoK2AfkIaKOg6OIisr74Xuja9a89+bN/rXXPues852zzwfACAyWSDNRNYAMqUIeEeCDx8TG4eQuQIEKJHAAEAizZCFz/SMBAPh+PDwrIsAHvgABeNMLCADATZvAMByH/w/qQplcAYCEAcB0kThLCIAUAEB6jkKmAEBGAYCdmCZTAKAEAGDLY2LjAFAtAGAnf+bTAICd+Jl7AQBblCEVAaCRACATZYhEAGg7AKzPVopFAFgwABRmS8Q5ANgtADBJV2ZIALC3AMDOEAuyAAgMADBRiIUpAAR7AGDIIyN4AISZABRG8lc88SuuEOcqAAB4mbI8uSQ5RYFbCC1xB1dXLh4ozkkXKxQ2YQJhmkAuwnmZGTKBNA/g88wAAKCRFRHgg/P9eM4Ors7ONo62Dl8t6r8G/yJiYuP+5c+rcEAAAOF0ftH+LC+zGoA7BoBt/qIl7gRoXgugdfeLZrIPQLUAoOnaV/Nw+H48PEWhkLnZ2eXk5NhKxEJbYcpXff5nwl/AV/1s+X48/Pf14L7iJIEyXYFHBPjgwsz0TKUcz5IJhGLc5o9H/LcL//wd0yLESWK5WCoU41EScY5EmozzMqUiiUKSKcUl0v9k4t8s+wM+3zUAsGo+AXuRLahdYwP2SycQWHTA4vcAAPK7b8HUKAgDgGiD4c93/+8//UegJQCAZkmScQAAXkQkLlTKsz/HCAAARKCBKrBBG/TBGCzABhzBBdzBC/xgNoRCJMTCQhBCCmSAHHJgKayCQiiGzbAdKmAv1EAdNMBRaIaTcA4uwlW4Dj1wD/phCJ7BKLyBCQRByAgTYSHaiAFiilgjjggXmYX4IcFIBBKLJCDJiBRRIkuRNUgxUopUIFVIHfI9cgI5h1xGupE7yAAygvyGvEcxlIGyUT3UDLVDuag3GoRGogvQZHQxmo8WoJvQcrQaPYw2oefQq2gP2o8+Q8cwwOgYBzPEbDAuxsNCsTgsCZNjy7EirAyrxhqwVqwDu4n1Y8+xdwQSgUXACTYEd0IgYR5BSFhMWE7YSKggHCQ0EdoJNwkDhFHCJyKTqEu0JroR+cQYYjIxh1hILCPWEo8TLxB7iEPENyQSiUMyJ7mQAkmxpFTSEtJG0m5SI+ksqZs0SBojk8naZGuyBzmULCAryIXkneTD5DPkG+Qh8lsKnWJAcaT4U+IoUspqShnlEOU05QZlmDJBVaOaUt2ooVQRNY9aQq2htlKvUYeoEzR1mjnNgxZJS6WtopXTGmgXaPdpr+h0uhHdlR5Ol9BX0svpR+iX6AP0dwwNhhWDx4hnKBmbGAcYZxl3GK+YTKYZ04sZx1QwNzHrmOeZD5lvVVgqtip8FZHKCpVKlSaVGyovVKmqpqreqgtV81XLVI+pXlN9rkZVM1PjqQnUlqtVqp1Q61MbU2epO6iHqmeob1Q/pH5Z/YkGWcNMw09DpFGgsV/jvMYgC2MZs3gsIWsNq4Z1gTXEJrHN2Xx2KruY/R27iz2qqaE5QzNKM1ezUvOUZj8H45hx+Jx0TgnnKKeX836K3hTvKeIpG6Y0TLkxZVxrqpaXllirSKtRq0frvTau7aedpr1Fu1n7gQ5Bx0onXCdHZ4/OBZ3nU9lT3acKpxZNPTr1ri6qa6UbobtEd79up+6Ynr5egJ5Mb6feeb3n+hx9L/1U/W36p/VHDFgGswwkBtsMzhg8xTVxbzwdL8fb8VFDXcNAQ6VhlWGX4YSRudE8o9VGjUYPjGnGXOMk423GbcajJgYmISZLTepN7ppSTbmmKaY7TDtMx83MzaLN1pk1mz0x1zLnm+eb15vft2BaeFospQ1S5KvVbU4GRpCHxsNdMLlDkzMCGLfq4KYwGqm1LrxCYf4BI8UIQ4VDFaD/4QCX3pHzTcf0nQmCh5K6dBsaVKt3F4W5c1M4JBPPuWGqVcKJXJmNrWXTfBp7gDQy+F3tXJQy+6eBMZFCLAhT8qDKYU5e/u2D5K9p3DZxD3e+pKhxY2kT5tUIRRJiqJrpqpNKbQfR8V/J8pqNdSWPBvlFyEqv2xXPKKtMKbXHXmHJmyMbZiWDGXkBYQ9Qx7zNfJkVpDg0FNa7qX4VvqCb5W0cZEF+V3e7KLRR+T0sDH1pSVRTx9B4hCy4DPxLxX/PJ9L1mCzGfUJjEOgYyRyy1cY1VNuPP0YHH0y3NNgJrjvfFv7kwRpvlKLd/cgQKo2PzI7Qf4YlKLKu1hfmKlkh3gVqk7cRMQ5xP6xvq0gLT7I0qK2rMBB5O0MWRj6j8H7/n/jx+8TsqGMGAAAAAAElFTkSuQmCC" alt="CognitivZen" class="logo">
+    <img src="data:image/png;base64,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" alt="CognitivZen" class="logo">
     <h1>CognitivZen</h1>
     <p>Automotive Aftermarket | AI + Data Strategy</p>
 </header>
@@ -574,10 +190,9 @@
         <button class="tab" onclick="switchTab(event, 'outcomes')">Outcomes & Timeline</button>
     </div>
 
-    <!-- EXECUTIVE SUMMARY TAB -->
+    <!-- TAB 1: EXECUTIVE SUMMARY -->
     <div id="executive" class="tab-content active">
         <h2>Executive Summary</h2>
-
         <div class="intro">
             <p><strong>Strategic Focus:</strong> CognitivZen will enter the automotive aftermarket as an AI + Data partner, targeting regional and mid-market distributors ($100M–$2B revenue) with data integration, demand forecasting, and digital acceleration solutions. The 12-month engagement is positioned as fractional CMO strategic leadership.</p>
         </div>
@@ -600,42 +215,401 @@
             <li>Revenue inflection: Year 2, as Year 1 pipeline converts</li>
         </ul>
 
-        <h3>Investment</h3>
+        <h3>Investment Model</h3>
         <ul>
-            <li><strong>Fractional CMO Leadership:</strong> Dedicated strategic advisor, paid monthly</li>
-            <li><strong>CognitivZen team/tools/infrastructure:</strong> [To be detailed in engagement terms]</li>
+            <li><strong>Fractional CMO Leadership:</strong> Dedicated strategic advisor, comprehensive engagement Months 1-12</li>
+            <li><strong>CognitivZen infrastructure:</strong> Inside sales team, tools, CRM, content production, assets</li>
         </ul>
     </div>
 
-    <!-- REMAINING TABS PLACEHOLDER -->
+    <!-- TAB 2: MARKET ASSESSMENT -->
     <div id="market" class="tab-content">
         <h2>Market Assessment</h2>
-        <p>Detailed market analysis, competitive landscape, and use cases.</p>
+        <div class="intro">
+            <p>The automotive aftermarket is a $400B+ global industry. North America accounts for $180B+, with 1,200+ distributors ranging from single-location shops to multi-billion dollar enterprises. CognitivZen targets Tier 2 regional and mid-market distributors ($100M–$2B revenue) facing common challenges: legacy inventory systems, demand forecasting gaps, and digital modernization.</p>
+        </div>
+
+        <h3>Reference Accounts (Verified Revenue & Headcount)</h3>
+        <table>
+            <tr><th>Company</th><th>Annual Revenue</th><th>Employees</th></tr>
+            <tr><td>Transtar</td><td>$702.4M</td><td>1,300</td></tr>
+            <tr><td>Keystone</td><td>$722.9M</td><td>7,500</td></tr>
+            <tr><td>Parts Authority</td><td>$800.2M</td><td>843</td></tr>
+            <tr><td>Motorcar Parts</td><td>$717.7M</td><td>5,900</td></tr>
+            <tr><td>CarParts.com</td><td>$588.8M</td><td>620</td></tr>
+            <tr><td>Turn 14</td><td>$186.5M</td><td>400+</td></tr>
+            <tr><td>Summit Racing</td><td>$500M–$1B</td><td>872</td></tr>
+            <tr><td>Standard Motor Products</td><td>$966M</td><td>3,200</td></tr>
+            <tr><td>Dorman</td><td>$906M</td><td>2,100</td></tr>
+            <tr><td>Genuine Parts</td><td>$18.3B</td><td>48,000</td></tr>
+            <tr><td>LKQ</td><td>$15.8B</td><td>50,000</td></tr>
+            <tr><td>Meritor</td><td>$3.8B</td><td>8,900</td></tr>
+            <tr><td>Rush Enterprises</td><td>$7.2B</td><td>9,500</td></tr>
+            <tr><td>Anixter</td><td>$8.6B</td><td>7,500</td></tr>
+        </table>
+
+        <h3>Primary Use Cases</h3>
+
+        <div class="card">
+            <h4>Use Case 1: Real-Time Inventory Visibility & Demand Sensing</h4>
+            <p><strong>Problem:</strong> Mid-market distributors operate with inventory spread across 3–8 regional warehouses and hundreds of retail locations. Legacy systems don't provide real-time visibility. Consequence: stockouts on high-velocity SKUs ($200K–$500K annual revenue lost per distributor), overstock on slow-movers (tied-up capital), and reactive rather than predictive ordering from suppliers.</p>
+            <p><strong>Root Cause:</strong> Disconnected data silos. Point-of-sale systems, warehouse management systems, and supplier portals don't communicate. Manual spreadsheet reconciliation happens weekly, not in real time.</p>
+            <p><strong>CognitivZen Solution:</strong> AI-driven data fabric integrating POS, warehouse, and supplier data. Agentic AI components: inventory anomaly detection (flagging unusual patterns), demand signal correlation (linking POS velocity to regional factors), and dynamic reorder point calculation (reducing both stockouts and overstock by 15–25%).</p>
+            <p><strong>Business Outcome:</strong> Reduce inventory carrying costs by $100K–$300K annually; improve fill rates from 92% to 97%+; free up $500K–$1.5M in trapped working capital.</p>
+            <p><strong>Scope & Timeline:</strong> 4-week assessment + 8-week implementation = $300K–$600K; ongoing managed service $30K–$50K/month.</p>
+        </div>
+
+        <div class="card">
+            <h4>Use Case 2: Demand Forecasting & Predictive Ordering</h4>
+            <p><strong>Problem:</strong> Forecast accuracy is 70–75% (vs. industry best practice of 85%+). Over-forecasting drives markdowns and obsolescence; under-forecasting drives expedited freight and lost sales.</p>
+            <p><strong>Root Cause:</strong> Forecasts are built on 3-year rolling averages and manual adjustments by merchandisers. No incorporation of seasonal patterns, market trends, or competitor activity.</p>
+            <p><strong>CognitivZen Solution:</strong> ML forecasting model trained on 7 years of distributor data (seasonality, product lifecycle, regional demand variance). Agentic AI continuously monitors market signals (competitor promotions, seasonal shifts, new vehicle launches) and auto-adjusts forecasts. Integration with supplier portals enables automatic PO submission based on predicted demand.</p>
+            <p><strong>Business Outcome:</strong> Improve forecast accuracy to 82–88%, reduce markdowns by $150K–$400K annually, improve order-to-delivery cycle time by 25–35%.</p>
+            <p><strong>Scope & Timeline:</strong> 3-week discovery + 10-week model build + 4-week pilot = $400K–$800K; ongoing $40K–$70K/month.</p>
+        </div>
+
+        <div class="card">
+            <h4>Use Case 3: Digital Portal Modernization & B2B Acceleration</h4>
+            <p><strong>Problem:</strong> Aging customer portals (built 2008–2015) are slow, hard to use, and don't reflect real-time inventory or pricing. Retailers prefer competitors with mobile apps and real-time data. Portal adoption is 40–50%; most transactions still happen via phone/email.</p>
+            <p><strong>Root Cause:</strong> Legacy tech stack (Magento 1.x, custom VB6 backend). High maintenance cost, slow feature velocity, poor mobile UX.</p>
+            <p><strong>CognitivZen Solution:</strong> Headless commerce platform (Next.js + Node.js backend) with modern mobile UX. Agentic AI components: personalized product recommendations (based on buyer history + market trends), dynamic pricing (regional, volume-based), and predictive stock alerts (notify buyers of items before reorder point).</p>
+            <p><strong>Business Outcome:</strong> Portal adoption rises to 70–80%, reduce transaction costs by 30–40% (fewer manual orders), improve customer retention by enabling self-service, open new digital revenue channel ($1M–$3M annually for large distributors).</p>
+            <p><strong>Scope & Timeline:</strong> 3-week requirements + 12-week build + 4-week pilot = $500K–$1.2M; ongoing support $25K–$45K/month.</p>
+        </div>
+
+        <h3>Competitive Landscape</h3>
+        <table>
+            <tr>
+                <th>Competitor</th>
+                <th>Focus</th>
+                <th>Est. Size</th>
+                <th>Go-to-Market</th>
+                <th>Entry Point</th>
+            </tr>
+            <tr>
+                <td><strong>Caelius</strong></td>
+                <td>Supply chain optimization + forecasting</td>
+                <td>~180 employees</td>
+                <td>VP Ops + VP Supply Chain</td>
+                <td>Single supply chain dimension</td>
+            </tr>
+            <tr>
+                <td><strong>NeuraFlash</strong></td>
+                <td>AI/ML + demand intelligence</td>
+                <td>~650 employees</td>
+                <td>CDO + Chief Analytics Officer</td>
+                <td>Analytics layer only</td>
+            </tr>
+            <tr>
+                <td><strong>Versable</strong></td>
+                <td>Data integration + MDM platform</td>
+                <td>~500–700 employees</td>
+                <td>CTO + VP Data</td>
+                <td>Data infrastructure (no business outcomes)</td>
+            </tr>
+        </table>
+
+        <h3>CognitivZen Differentiation</h3>
+        <ul>
+            <li><strong>Speed:</strong> 4–8 weeks to first business outcome vs. 3–6 months competitors</li>
+            <li><strong>Cost:</strong> $300K–$800K per phase vs. $400K–$1M+ for competitors</li>
+            <li><strong>Integrated stack:</strong> Inventory + demand + portal in one engagement (not separate projects)</li>
+            <li><strong>Automotive focus:</strong> Pre-built models for aftermarket dynamics (vs. generic retail solutions)</li>
+            <li><strong>Delivery model:</strong> Fractional CMO + ops team (vs. large consulting bench)</li>
+        </ul>
     </div>
 
+    <!-- TAB 3: STRATEGIC DIRECTION -->
     <div id="strategic" class="tab-content">
         <h2>Strategic Direction</h2>
-        <p>Positioning, messaging by persona, and Tier 2 strategy.</p>
+
+        <h3>Positioning Statement</h3>
+        <div class="intro">
+            <p><strong>"CognitivZen is the AI + Data partner for automotive aftermarket distributors who need to modernize inventory, forecasting, and customer experience—without the enterprise consulting overhead."</strong></p>
+            <p>Why not "Engineering Partner"? Because distributors don't hire based on engineering depth; they hire based on business outcomes (lower carrying costs, better fill rates, faster time-to-market for digital). Engineering is the means, not the message.</p>
+        </div>
+
+        <h3>Messaging by Persona</h3>
+
+        <div class="card">
+            <h4>VP Operations</h4>
+            <p><strong>Hook:</strong> "How much working capital is trapped in slow-moving inventory right now?"</p>
+            <p><strong>Key Messages:</strong> Real-time visibility across warehouses; predictive ordering reduces both stockouts and overstock; improve fill rates from 92% to 97%+; free up $500K–$1.5M in capital.</p>
+            <p><strong>Success Metric They Care About:</strong> Inventory turns, working capital efficiency, fill rates, expedited freight cost reduction.</p>
+        </div>
+
+        <div class="card">
+            <h4>Chief Data Officer / Chief Analytics Officer</h4>
+            <p><strong>Hook:</strong> "Your forecast model is probably 70–75% accurate. Here's how to get to 85%+."</p>
+            <p><strong>Key Messages:</strong> ML models trained on 7+ years of automotive aftermarket data; automated signal detection (seasonality, competitor activity, market trends); integration with forecasting tools they already own.</p>
+            <p><strong>Success Metric They Care About:</strong> Forecast accuracy improvement, reduction in forecast bias, time-to-insight, model explainability.</p>
+        </div>
+
+        <div class="card">
+            <h4>VP Digital / Chief Customer Officer</h4>
+            <p><strong>Hook:</strong> "Your portal is 2008 tech. Your competitors are mobile-first and have real-time data."</p>
+            <p><strong>Key Messages:</strong> Headless modern architecture (Next.js, Node.js) replaces legacy monolith; AI-driven personalization; mobile app as standard; dynamic pricing and inventory-aware recommendations.</p>
+            <p><strong>Success Metric They Care About:</strong> Portal adoption, transaction volume, customer NPS, mobile usage, digital revenue contribution.</p>
+        </div>
+
+        <div class="card">
+            <h4>CFO / VP Finance</h4>
+            <p><strong>Hook:</strong> "This engagement delivers $1M–$3M+ in first-year value: working capital release, markdown reduction, and digital revenue."</p>
+            <p><strong>Key Messages:</strong> ROI payback in 12 months; transparent pricing (no surprise scope creep); managed service model aligns cost with outcomes; comparison to internal build ($2M–$5M+ and 18–24 months).</p>
+            <p><strong>Success Metric They Care About:</strong> Working capital improvement, EBITDA impact, payback period, OpEx vs. CapEx.</p>
+        </div>
+
+        <h3>Why Tier 2 Distributors First?</h3>
+        <ul>
+            <li><strong>Shorter decision cycles:</strong> $300K–$800K spend is approved by regional VP or owner, not enterprise committee. 4–8 week sales cycle vs. 6+ months for Tier 1.</li>
+            <li><strong>Direct executive access:</strong> You can reach the decision-maker directly. No layers of procurement or steering committee.</li>
+            <li><strong>Higher win probability:</strong> Pain is acute and they have budget. Tier 1 (LKQ, Genuine Parts) has internal teams; Tier 2 needs external partners.</li>
+            <li><strong>Case study velocity:</strong> First 2–3 wins (Months 2–6) become proof for the next 20. Tier 2 buyers talk to each other; wins create pull-through demand.</li>
+        </ul>
     </div>
 
+    <!-- TAB 4: EXECUTION PLAYBOOK -->
     <div id="execution" class="tab-content">
         <h2>Execution Playbook</h2>
-        <p>Call scripts, objection handling, email sequences, and weekly rhythm.</p>
+
+        <h3>Call Script: Discovery Hook</h3>
+        <div class="script-box">
+            <div class="speaker">BDR (Opening):</div>
+            <div class="quote">"Hi [Name], I saw [recent news trigger: new market entry, acquisition, expansion announcement] and thought it might be relevant. We work with distributors in [category] on a specific problem: when you scale across multiple locations or add SKUs, inventory visibility and demand forecasting become way harder. Most teams we talk to are running on spreadsheets and guesses. Does that sound familiar?"</div>
+        </div>
+
+        <div class="script-box">
+            <div class="speaker">Prospect response:</div>
+            <div class="quote">"Kind of. We've looked at systems, but our legacy setup is complex."</div>
+        </div>
+
+        <div class="script-box">
+            <div class="speaker">BDR (Problem identification):</div>
+            <div class="quote">"Right, that's the common story. Quick question: if I asked you right now, 'How much working capital is tied up in slow-moving SKUs across your locations?', what would you say? And do you know which items are at risk of stockout this month?"</div>
+        </div>
+
+        <div class="script-box">
+            <div class="speaker">BDR (Value proposition):</div>
+            <div class="quote">"That's what we solve. We've helped distributors like [Case Study Name] cut carrying costs by $100–300K annually and improve fill rates from 92% to 97%+. We do a quick 20-minute assessment—no consultants, no RFP—just us looking at your top 3 problems and what a fix might look like. Does that make sense?"</div>
+        </div>
+
+        <h3>Objection Handling</h3>
+
+        <div class="card">
+            <h4>Objection 1: "Not ready to invest right now."</h4>
+            <p><strong>Response:</strong> "I totally get it. Most teams we talk to say the same thing until they run the math. A typical distributor has $1–3M in trapped working capital from inventory inefficiency alone. Our assessment usually shows that ROI happens in 12 months. Would it make sense to spend 20 minutes understanding what you could recover, and then decide if now's the right time?"</p>
+        </div>
+
+        <div class="card">
+            <h4>Objection 2: "We'll do it internally."</h4>
+            <p><strong>Response:</strong> "That's possible, and I hear it often. Most teams that try internally run into three things: finding someone with automotive aftermarket data science expertise (very hard), build time is 18–24 months instead of 8 weeks, and internal resource gets pulled toward firefighting. We've already solved those problems, so you get to market 10 months faster. But let's chat about what you're thinking—maybe an assessment would clarify what makes sense."</p>
+        </div>
+
+        <div class="card">
+            <h4>Objection 3: "Too expensive."</h4>
+            <p><strong>Response:</strong> "The sticker price sounds high until you do the math. A typical engagement is $300–800K delivered over 8–12 weeks. Against $1–3M in first-year value (working capital release + markdown savings + fill rate improvement), that's a 3–4x ROI in year one. Plus, you own the system and the playbooks forever. How would you think about an ROI conversation to see if the math works for you?"</p>
+        </div>
+
+        <h3>Email Sequences</h3>
+
+        <h4>Sequence 1: Problem Hook</h4>
+        <div class="script-box">
+            <div class="speaker">Subject:</div>
+            <div class="quote">How much working capital is stuck in slow-moving inventory?</div>
+            <div class="speaker">Body:</div>
+            <div class="quote">[Name], we work with distributors in [category] who are sitting on $500K–$2M in slow-moving inventory with no way to see it in real-time. Most teams don't realize how much working capital is trapped until they look. Happy to run a quick analysis on your data. Takes 20 minutes. Thoughts?</div>
+        </div>
+
+        <h4>Sequence 2: Social Proof</h4>
+        <div class="script-box">
+            <div class="speaker">Subject:</div>
+            <div class="quote">$150M+ distributor just improved fill rates by 5% (here's how)</div>
+            <div class="speaker">Body:</div>
+            <div class="quote">[Name], a regional distributor with $150M+ revenue just moved from 92% to 97% fill rates by connecting their POS, warehouse, and supplier data in real-time. Saved them $100K+ in expedited freight and improved customer retention significantly. Many teams in your segment are running on the same legacy setup. Would be worth a conversation to see if you have similar upside?</div>
+        </div>
+
+        <h4>Sequence 3: Assessment Offer</h4>
+        <div class="script-box">
+            <div class="speaker">Subject:</div>
+            <div class="quote">2-week assessment: Clear visibility on your inventory opportunity</div>
+            <div class="speaker">Body:</div>
+            <div class="quote">[Name], we're running a limited assessment program where we spend 2 weeks analyzing your inventory and forecast data to identify your top 3 opportunities (working capital release, carry cost reduction, fill rate improvement). No sales pitch—just a clear roadmap of what's possible. Interested?</div>
+        </div>
+
+        <h3>Weekly Execution Rhythm</h3>
+        <ul>
+            <li><strong>Monday 9am:</strong> Team standup (5 min). Recap last week's conversations, blockers, this week's target calls (20 conversations / week, 4 per day).</li>
+            <li><strong>Tuesday–Thursday 10am–12pm, 2pm–4pm:</strong> Prospect calls. BDR discovery → Account Executive qualification → Strategy Lead follow-up for qualified prospects.</li>
+            <li><strong>Friday 3pm:</strong> Week review + coaching. 1:1s with BDR and AE. Review conversion rates, messaging resonance, obstacles. Adjust script/angles based on feedback.</li>
+            <li><strong>Monthly (last Friday):</strong> Messaging refinement session. Review 20+ calls from the month, identify what resonates vs. what doesn't, update value props and scripts accordingly.</li>
+        </ul>
     </div>
 
+    <!-- TAB 5: PROOF STRATEGY -->
     <div id="proof" class="tab-content">
         <h2>Proof Strategy</h2>
-        <p>Proof ladder and thought leadership content plan.</p>
+
+        <h3>Proof Ladder: 5 Stages to Market Credibility</h3>
+
+        <div class="timeline-item">
+            <h4>Stage 1: Existing Customer (Month 1)</h4>
+            <p>Identify 1–2 existing CognitivZen customers who have had outcomes. Secure agreement to be a reference and share basic metrics (working capital saved, fill rate improvement, timeline). This becomes your opening story on every call.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Stage 2: Case Study (Months 1–2)</h4>
+            <p>Deep-dive with existing customer: write full business impact narrative (problem, solution, outcomes). Include their name, role, company, metrics, quote. 3–4 page PDF that sales can share. This is your #1 sales asset.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Stage 3: Thought Leadership (Months 2–6)</h4>
+            <p>Publish 3–5 LinkedIn articles on automotive aftermarket challenges: inventory fragmentation, forecast bias, portal modernization. Guest articles in industry publications (Aftermarket News, Modern Tire Dealer, etc.). This builds credibility with prospects who are researching before they talk to you.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Stage 4: Pilot Engagements (Months 4–6)</h4>
+            <p>Close 2–3 pilot/PoC deals at $50K–$150K ASP. Fast turnaround (6–8 weeks), clear success metrics, set up for case study conversion Month 7+.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Stage 5: Reference Calls (Months 6–9)</h4>
+            <p>Leverage pilots + existing customer + case study to enable reference calls with prospects. "I'd love to have [Customer Name from similar segment] talk through their experience with you." This is the final credibility builder before large deal close.</p>
+        </div>
+
+        <h3>Thought Leadership Content Plan</h3>
+        <table>
+            <tr>
+                <th>Article Title</th>
+                <th>Month</th>
+                <th>Audience</th>
+                <th>Key Message</th>
+            </tr>
+            <tr>
+                <td>"Why Legacy ERP Is Killing Your Fill Rates"</td>
+                <td>Month 2</td>
+                <td>VP Ops, VP Supply Chain</td>
+                <td>Connected data = better outcomes</td>
+            </tr>
+            <tr>
+                <td>"The Inventory Fragmentation Problem (And Why It Costs $500K+)"</td>
+                <td>Month 3</td>
+                <td>CFO, VP Finance</td>
+                <td>Working capital locked in legacy systems</td>
+            </tr>
+            <tr>
+                <td>"Forecast Accuracy: 70% Is Costing You Millions"</td>
+                <td>Month 4</td>
+                <td>CDO, Chief Analytics Officer</td>
+                <td>ML can improve accuracy to 85%+</td>
+            </tr>
+            <tr>
+                <td>"Why B2B Portals Matter (For Aftermarket Distributors)"</td>
+                <td>Month 5</td>
+                <td>VP Digital, Chief Customer Officer</td>
+                <td>Portal modernization drives adoption and retention</td>
+            </tr>
+            <tr>
+                <td>"Build vs. Buy: The Real Cost of Internal Data Teams"</td>
+                <td>Month 6–8</td>
+                <td>CFO, CTO, CEO</td>
+                <td>Fractional outsourcing is faster and cheaper</td>
+            </tr>
+        </table>
     </div>
 
+    <!-- TAB 6: TEAM & INVESTMENT -->
     <div id="team" class="tab-content">
         <h2>Team & Investment</h2>
-        <p><strong>Sajin Nair:</strong> Fractional CMO strategic leadership, positioned to lead positioning, messaging, and GTM system development.</p>
+
+        <h3>Team Structure</h3>
+        <p><strong>Sajin Nair — Fractional CMO</strong> leads positioning, messaging, and GTM system development. Engagement model: 2 lakhs INR/month, paid in advance.</p>
+
+        <div class="card">
+            <h4>Scope of Engagement</h4>
+            <ul>
+                <li><strong>Months 1–2 (Positioning & Strategy):</strong> Validate ICP and buyer personas, test 3+ positioning variants, create messaging playbook, identify 50 target accounts.</li>
+                <li><strong>Months 3–6 (Asset Creation & Optimization):</strong> Conduct 2–3 strategy calls per week with prospects, coach sales team on messaging, create case study, build email sequences, optimize call scripts based on feedback.</li>
+                <li><strong>Months 7–12 (Scale & Refinement):</strong> Strategic engagement with high-value prospects, direct thought leadership direction, GTM system refinement, Year 2 planning.</li>
+            </ul>
+        </div>
+
+        <h3>Inside Sales Team</h3>
+        <ul>
+            <li><strong>1 existing inside sales professional</strong> (account executive baseline)</li>
+            <li><strong>3 new inside sales hires:</strong>
+                <ul>
+                    <li>1 BDR (business development representative) – discovery and qualification</li>
+                    <li>1 Account Executive – deal development and closure</li>
+                    <li>1 Sales Operations / Enablement – playbook management, CRM, analytics</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h3>CognitivZen Funds & Resources</h3>
+        <ul>
+            <li>Sales team compensation, ramp, and benefits</li>
+            <li>CRM software (HubSpot, Pipedrive, Salesforce)</li>
+            <li>Sales enablement tools (Gong, Outreach)</li>
+            <li>Content production and asset creation (copywriting, design, video)</li>
+            <li>Marketing automation and email sequences</li>
+            <li>Thought leadership publishing and distribution</li>
+        </ul>
+
+        <h3>Success Metrics & Accountability</h3>
+        <ul>
+            <li><strong>Fractional CMO:</strong> Accountable for positioning validation (50+ conversations at 70%+ resonance), asset creation (case study, email sequences, playbook delivered), GTM system built (weekly rhythm, playbook, target list deployed).</li>
+            <li><strong>Inside Sales:</strong> Accountable for conversation volume (50+ per month), qualification accuracy (70%+ near-term opportunity rate), pipeline generation ($250–500K by end of Year 1).</li>
+        </ul>
     </div>
 
+    <!-- TAB 7: OUTCOMES & TIMELINE -->
     <div id="outcomes" class="tab-content">
         <h2>Outcomes & Timeline</h2>
-        <p>12-month timeline with 4 phases and success metrics aligned to CMO deliverables.</p>
+
+        <h3>12-Month Roadmap: 4 Phases</h3>
+
+        <div class="timeline-item">
+            <h4>Phase 1: Positioning & Strategy (Months 1–2)</h4>
+            <p><strong>Deliverables:</strong> ICP and buyer persona validation, 3+ positioning variants tested with 10+ prospect conversations, messaging playbook, call scripts, email sequences, 50-company target list.</p>
+            <p><strong>Gate:</strong> 70%+ messaging resonance in prospect conversations; team aligned on positioning and key messages.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Phase 2: Asset Creation & Validation (Months 3–4)</h4>
+            <p><strong>Deliverables:</strong> Case study (1), PoV (1), landing page, email sequences (5+), updated playbook, 20+ strategy calls conducted.</p>
+            <p><strong>Gate:</strong> Case study and PoV approved by customer; messaging consistently resonating in 20+ calls; 3–5 qualified opportunities identified.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Phase 3: System Building & Operationalization (Months 5–8)</h4>
+            <p><strong>Deliverables:</strong> GTM system fully deployed (playbook, training, CRM setup, weekly rhythm), first 2–3 pilot engagements closed, thought leadership articles (2–3) published, ongoing strategy calls and coaching.</p>
+            <p><strong>Gate:</strong> Weekly rhythm sustained (50+ calls/month), team qualified for independence, 30+ qualified pipeline built, pilot engagements showing early success.</p>
+        </div>
+
+        <div class="timeline-item">
+            <h4>Phase 4: Optimization & Proof (Months 9–12)</h4>
+            <p><strong>Deliverables:</strong> Continued high-volume outreach, pilot engagements converting to case studies (2–3), thought leadership articles (2–3 more), reference calls enabled, Year 1 target of $250–500K pipeline achieved.</p>
+            <p><strong>Gate:</strong> Positioning validated with 50+ conversations; 3–5 case studies and PoVs created; thought leadership published; $250–500K pipeline closed or very qualified; Year 2 strategy refined.</p>
+        </div>
+
+        <h3>Year 1 Success Metrics</h3>
+        <ul>
+            <li><strong>Positioning validated:</strong> 50+ prospect conversations completed; 70%+ messaging resonance confirmed</li>
+            <li><strong>Offerings defined:</strong> 3+ service offerings with documented scope, SLA, pricing</li>
+            <li><strong>Assets created:</strong> 1 case study, 1 PoV, 1 landing page, 5+ email sequences, 1 updated playbook, 3–5 thought leadership articles</li>
+            <li><strong>GTM system built:</strong> Weekly playbook deployed and sustained; BDR + AE + Sales Ops trained and independent; 50+ companies in target account list</li>
+            <li><strong>Market validation:</strong> 50+ qualified conversations; 2–3 near-term opportunities identified by Month 6; reference customers secured</li>
+            <li><strong>Pipeline generated:</strong> $250–500K in qualified pipeline; $0–$100K revenue (PoC engagements)</li>
+        </ul>
+
+        <h3>Year 2 Expectations</h3>
+        <ul>
+            <li>Year 1 pipeline converts: $200K–$400K revenue expected</li>
+            <li>Continued outreach: $500K–$1M+ new pipeline generation</li>
+            <li>Proof expansion: 5+ case studies, 10+ reference calls available</li>
+            <li>Sales team scales: Add Account Executives, expand to enterprise segment (Tier 1) pilots</li>
+            <li>CMO role evolves: Strategic advisory vs. execution; focus on product/market fit refinement and new segment expansion</li>
+        </ul>
     </div>
 
 </div>
@@ -648,7 +622,6 @@
 </div>
 
 <script>
-// Password protection
 const PASSWORD = 'sajin<>cognitivzen';
 
 function checkPassword() {
@@ -665,23 +638,17 @@ function checkPassword() {
     }
 }
 
-// Allow Enter key to submit
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('passwordInput').addEventListener('keypress', function(event) {
-        if (event.key === 'Enter') {
-            checkPassword();
-        }
+        if (event.key === 'Enter') checkPassword();
     });
 });
 
-// Tab switching
 function switchTab(e, tabName) {
     const contents = document.querySelectorAll('.tab-content');
     contents.forEach(c => c.classList.remove('active'));
-
     const tabs = document.querySelectorAll('.tab');
     tabs.forEach(t => t.classList.remove('active'));
-
     document.getElementById(tabName).classList.add('active');
     e.target.classList.add('active');
 }
