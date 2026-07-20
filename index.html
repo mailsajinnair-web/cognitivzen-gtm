@@ -353,42 +353,30 @@
             }
         </script>
 
-        <h3>Technology Stack & Integration Architecture</h3>
-        <p><strong>CognitivZen's recommended tech stack for automotive aftermarket data modernization:</strong></p>
+        <h3>Typical Automotive Aftermarket Company Technology Stack</h3>
+        <p><strong>Current state for distributors like those we serve:</strong></p>
         
         <table>
-            <tr><th>Layer</th><th>Primary Platform</th><th>Integration Capability</th><th>Typical Cost (Annual)</th></tr>
-            <tr><td><strong>Data Integration Backbone</strong></td><td>MuleSoft Anypoint Platform</td><td>Capabilities: SAP connectors (documented), WMS integration (needs verification for Manhattan specifically), EDI, real-time sync</td><td>$100K–$250K</td></tr>
-            <tr><td><strong>Integration Alternative (Lower Cost)</strong></td><td>Boomi AtomSphere</td><td>Capabilities: Cloud-native, pre-built connectors for common ERP/WMS (verification needed for automotive aftermarket stack)</td><td>$50K–$120K</td></tr>
-            <tr><td><strong>Data Warehouse / Lake</strong></td><td>Snowflake + dbt</td><td>Real-time streaming from MuleSoft/Boomi; schema transformation; data lineage</td><td>$75K–$200K</td></tr>
-            <tr><td><strong>AI/ML / Forecasting</strong></td><td>Databricks ML + Python (XGBoost, Prophet)</td><td>Demand forecasting, inventory optimization, price elasticity modeling</td><td>$60K–$150K</td></tr>
-            <tr><td><strong>BI / Analytics Dashboard</strong></td><td>Tableau or Power BI</td><td>Real-time inventory visibility, forecasting dashboards, executive reporting</td><td>$30K–$80K</td></tr>
-            <tr><td><strong>Portal / Digital Frontend</strong></td><td>React + Node.js microservices</td><td>Custom dealer portal, personalization, mobile-first design</td><td>$150K–$300K (custom build)</td></tr>
+            <tr><th>Layer</th><th>Common Systems</th><th>Challenge</th></tr>
+            <tr><td><strong>ERP</strong></td><td>SAP ECC/S4HANA, Oracle, NetSuite</td><td>Legacy systems (10–20+ years old), difficult to extend</td></tr>
+            <tr><td><strong>Warehouse Management</strong></td><td>Manhattan WMS, Blue Yonder, Infor</td><td>Separate from ERP; batch-mode data sync (daily/weekly)</td></tr>
+            <tr><td><strong>Ordering Platform</strong></td><td>Custom (older e-commerce), Shopify, SAP portal</td><td>Built 2008–2015; slow, low adoption, poor UX</td></tr>
+            <tr><td><strong>Analytics / BI</strong></td><td>Excel, Power BI, Tableau (rare)</td><td>Most use spreadsheets; no real-time visibility</td></tr>
+            <tr><td><strong>Data Infrastructure</strong></td><td>None (SQL Server on-prem, if anything)</td><td>No data lake or warehouse; data silos across systems</td></tr>
+            <tr><td><strong>AI/ML Capability</strong></td><td>None</td><td>Forecasting done manually or with Excel formulas</td></tr>
         </table>
 
-        <h3>Why MuleSoft or Boomi?</h3>
+        <h3>The Challenge: Data Lives in Silos</h3>
         <div class="card">
-            <h4>MuleSoft: Enterprise-Grade</h4>
-            <p><strong>Capability:</strong> Pre-built connectors to SAP (ECC + S/4HANA), Manhattan, E2open EDI, Shopify. Real-time sync capability.</p>
-            <p><strong>Licensing:</strong> Gold tier $150K–$250K; enterprise deployments $500K–$2M+.</p>
-            <p><strong>Implementation:</strong> Typically 2–3x licensing cost.</p>
-            <p><strong>Best for:</strong> Mid-market with complex legacy systems (Transtar, Keystone, Parts Authority scale).</p>
+            <p>ERP has order history → WMS has inventory levels → Portal has customer behavior → Pricing system has margin data. None of these "talk" to each other in real-time. Result: inventory fragmentation, manual workarounds, no predictive capability.</p>
+            <p><strong>Integration path options exist</strong> (MuleSoft, Boomi, custom APIs) but require significant upfront investment.</p>
         </div>
 
-        <div class="card">
-            <h4>Boomi: Faster Time-to-Value</h4>
-            <p><strong>Speed:</strong> 4–6 weeks vs. 8–10 weeks (MuleSoft).</p>
-            <p><strong>Architecture:</strong> Cloud-native, lower infrastructure overhead.</p>
-            <p><strong>Licensing:</strong> $50K–$120K annually + $5K–$18K per connection.</p>
-            <p><strong>Implementation:</strong> 1.5–2.5x licensing cost.</p>
-            <p><strong>Best for:</strong> Distributors with simpler IT stacks (Turn 14, Summit Racing scale). Typically 30–40% cheaper total cost of ownership than MuleSoft for same use case.</p>
-        </div>
-
-        <h3>Total Stack Cost Estimate (Year 1 Implementation + Licensing)</h3>
+        <h3>How CognitivZen Approaches Data Modernization</h3>
+        <p>We've built digital ordering platforms for automotive wholesalers. We understand the operational layer. Data/AI capability is the natural adjacent move: use the data your ordering platform is already collecting to optimize inventory, forecast demand, and personalize pricing.</p>
         <ul>
-            <li><strong>MuleSoft-based approach:</strong> $450K–$1M (integration core + data warehouse + ML + portal)</li>
-            <li><strong>Boomi-based approach:</strong> $300K–$650K (faster, leaner, still production-grade)</li>
-            <li><strong>CognitivZen phased delivery:</strong> Phase 1 (real-time integration + dashboard): $300K–$500K. Phase 2 (AI forecasting + portal modernization): $200K–$400K optional.</li>
+            <li><strong>Phase 1:</strong> Data pipeline connecting existing systems (ERP → WMS → Platform). No big rip-and-replace of core systems.</li>
+            <li><strong>Phase 2:</strong> Analytics layer + AI models for forecasting, pricing, inventory optimization.</li>
         </ul>
 
         <h3>Why CognitivZen Wins vs. These Competitors</h3>
