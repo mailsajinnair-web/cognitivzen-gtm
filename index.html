@@ -42,16 +42,16 @@
         li { margin-bottom: 10px; line-height: 1.8; color: var(--text-mid); }
         .card { background: var(--white); border: none; border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; box-shadow: 0 2px 12px var(--shadow); border-left: 5px solid var(--accent); transition: box-shadow 0.3s ease; }
         .card:hover { box-shadow: 0 6px 24px var(--shadow-md); }
-        table { width: 100%; border-collapse: collapse; margin: 28px 0; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px var(--shadow); }
-        th { background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%); color: white; padding: 16px 20px; text-align: left; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
-        td { padding: 14px 20px; border-bottom: 1px solid var(--divider); color: var(--text-mid); }
+        table { width: 100%; border-collapse: collapse; margin: 28px 0; background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 12px var(--shadow); font-size: 0.9rem; }
+        th { background: linear-gradient(135deg, var(--navy) 0%, #1a3a52 100%); color: white; padding: 14px 16px; text-align: left; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--divider); color: var(--text-mid); }
         tbody tr:nth-child(odd) { background: rgba(212,100,31,0.02); }
         .intro { background: linear-gradient(135deg, rgba(212,100,31,0.08) 0%, rgba(15,41,66,0.04) 100%); border-left: 5px solid var(--accent); padding: 28px 32px; margin-bottom: 36px; border-radius: 12px; box-shadow: 0 2px 8px var(--shadow); }
         .script-box { background: rgba(212,100,31,0.04); border-left: 5px solid var(--accent); padding: 20px 24px; margin: 20px 0; border-radius: 8px; font-size: 0.95rem; line-height: 1.7; }
         .speaker { font-weight: 600; color: var(--accent); margin-bottom: 6px; font-size: 0.9rem; }
         .quote { font-style: italic; color: var(--text-mid); margin-left: 8px; }
         footer { text-align: center; padding: 48px 20px; color: var(--text-light); border-top: 1px solid var(--divider); margin-top: 80px; font-size: 0.85rem; background: rgba(15,41,66,0.02); }
-        @media (max-width: 768px) { header h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } .tab { padding: 12px 16px; font-size: 0.85rem; } }
+        @media (max-width: 768px) { header h1 { font-size: 1.8rem; } h2 { font-size: 1.4rem; } .tab { padding: 12px 16px; font-size: 0.85rem; } table { font-size: 0.8rem; } }
     </style>
 </head>
 <body>
@@ -102,11 +102,6 @@
             <li>Revenue in Year 1: $0–$100K (proof-of-concept projects only)</li>
             <li>Revenue inflection: Year 2, as Year 1 pipeline converts</li>
         </ul>
-        <h3>Investment Model</h3>
-        <ul>
-            <li><strong>Fractional CMO Leadership:</strong> Sajin Nair providing strategic advisor role, comprehensive engagement Months 1-12</li>
-            <li><strong>CognitivZen infrastructure:</strong> Inside sales team, tools, CRM, content production, assets</li>
-        </ul>
     </div>
 
     <div id="market" class="tab-content">
@@ -115,24 +110,35 @@
             <p>The automotive aftermarket is a $400B+ global industry. North America accounts for $180B+, with 1,200+ distributors. CognitivZen targets Tier 2 regional and mid-market distributors ($100M–$2B revenue) facing common challenges: legacy inventory systems, demand forecasting gaps, and digital modernization.</p>
         </div>
 
-        <h3>Reference Accounts (Verified Revenue & Headcount)</h3>
+        <h3>Key Reference Accounts (Verified Revenue & Headcount)</h3>
         <table>
-            <tr><th>Company</th><th>Annual Revenue</th><th>Employees</th></tr>
-            <tr><td>Transtar</td><td>$702.4M</td><td>1,300</td></tr>
-            <tr><td>Keystone</td><td>$722.9M</td><td>7,500</td></tr>
-            <tr><td>Parts Authority</td><td>$800.2M</td><td>843</td></tr>
-            <tr><td>Motorcar Parts</td><td>$717.7M</td><td>5,900</td></tr>
-            <tr><td>CarParts.com</td><td>$588.8M</td><td>620</td></tr>
-            <tr><td>Turn 14</td><td>$186.5M</td><td>400+</td></tr>
-            <tr><td>Summit Racing</td><td>$500M–$1B</td><td>872</td></tr>
-            <tr><td>Standard Motor Products</td><td>$966M</td><td>3,200</td></tr>
-            <tr><td>Dorman</td><td>$906M</td><td>2,100</td></tr>
-            <tr><td>Genuine Parts</td><td>$18.3B</td><td>48,000</td></tr>
-            <tr><td>LKQ</td><td>$15.8B</td><td>50,000</td></tr>
-            <tr><td>Meritor</td><td>$3.8B</td><td>8,900</td></tr>
-            <tr><td>Rush Enterprises</td><td>$7.2B</td><td>9,500</td></tr>
-            <tr><td>Anixter</td><td>$8.6B</td><td>7,500</td></tr>
+            <tr><th>Company</th><th>Annual Revenue</th><th>Employees</th><th>Segment</th></tr>
+            <tr><td>Transtar</td><td>$702.4M</td><td>1,300</td><td>OEM Parts Distribution</td></tr>
+            <tr><td>Keystone</td><td>$722.9M</td><td>7,500</td><td>Automotive Distribution</td></tr>
+            <tr><td>Parts Authority</td><td>$800.2M</td><td>843</td><td>Aftermarket Retail</td></tr>
+            <tr><td>Motorcar Parts</td><td>$717.7M</td><td>5,900</td><td>Auto Parts Distribution</td></tr>
+            <tr><td>CarParts.com</td><td>$588.8M</td><td>620</td><td>Online Aftermarket</td></tr>
+            <tr><td>Turn 14</td><td>$186.5M</td><td>400+</td><td>Performance Parts</td></tr>
+            <tr><td>Summit Racing</td><td>$500M–$1B</td><td>872</td><td>Performance Distributor</td></tr>
+            <tr><td>Standard Motor Products</td><td>$966M</td><td>3,200</td><td>OEM Supplier</td></tr>
+            <tr><td>Dorman</td><td>$906M</td><td>2,100</td><td>Replacement Parts</td></tr>
+            <tr><td>Genuine Parts</td><td>$18.3B</td><td>48,000</td><td>Tier 1 (Reference)</td></tr>
+            <tr><td>LKQ</td><td>$15.8B</td><td>50,000</td><td>Tier 1 (Reference)</td></tr>
+            <tr><td>Meritor</td><td>$3.8B</td><td>8,900</td><td>OEM Supplier</td></tr>
+            <tr><td>Rush Enterprises</td><td>$7.2B</td><td>9,500</td><td>Tier 1 (Reference)</td></tr>
+            <tr><td>Anixter</td><td>$8.6B</td><td>7,500</td><td>Tech Distribution</td></tr>
         </table>
+
+        <h3>50+ Target Account List (Initial Prospect Pool)</h3>
+        <p><strong>Tier 2 Distributors by Region (Total ~50 accounts across segments):</strong></p>
+        <ul>
+            <li><strong>Northeast (12 accounts):</strong> Kost Tire & Auto, Levin Tire, American Tire, Sartore Auto Parts, Russ Tobin's, Tri-City Auto Parts, Monro Muffler, Merchants Tire, TBC/National Tire, Discount Tire Direct, Big O Tires (regional franchises), local MSOs</li>
+            <li><strong>Southeast (10 accounts):</strong> Tire Kingdom, Firestone Complete Auto Care, Midas (franchises), Hibdon Tires Plus, local Carolina/Georgia distributors, regional tire chains</li>
+            <li><strong>Midwest (12 accounts):</strong> Tire Rack (distribution), Costco Tire Centers, Sam's Club Auto, Walmart Auto Centers, local Chicago/Detroit/Minneapolis distributors, independent tire shops with >$100M revenue</li>
+            <li><strong>West Coast (10 accounts):</strong> Les Schwab Tire Centers, Discount Tire regional, Firestone/Michelin franchises, California-based distributors, Seattle/Portland area chains</li>
+            <li><strong>National/Online (6+ accounts):</strong> Amazon auto (partner logistics), Walmart.com auto fulfillment, eBay Motors, specialized online-first retailers, cross-regional MSOs</li>
+        </ul>
+        <p><strong>Selection Criteria:</strong> $100M–$2B revenue, 300+ employees (operational scale), 5+ physical locations (inventory complexity), legacy systems (high pain), accessible decision-makers, regional/national brand recognition.</p>
 
         <h3>Primary Use Cases</h3>
 
@@ -248,7 +254,7 @@
         <ul>
             <li><strong>vs. Caelius:</strong> They own supply chain. We own the full loop: inventory (source of truth), demand (predictive), and customer (digital). Caelius is narrow; we're integrated.</li>
             <li><strong>vs. NeuraFlash:</strong> They own analytics. We own outcomes. NeuraFlash delivers 30% forecast accuracy improvement. We deliver $150K–$400K in markdown savings. Different conversation entirely.</li>
-            <li><strong>vs. Versable:</strong> They own data infrastructure. We own business impact. Versable builds platforms; we build revenue recovery. Tire 2 distributors can't afford platform-first thinking.</li>
+            <li><strong>vs. Versable:</strong> They own data infrastructure. We own business impact. Versable builds platforms; we build revenue recovery. Tier 2 distributors can't afford platform-first thinking.</li>
             <li><strong>vs. Internal Build:</strong> "We'll do it ourselves" loses on speed (18–24 months vs. 8 weeks) and distraction (your data team gets pulled into firefighting). We win on focus.</li>
         </ul>
 
@@ -451,29 +457,112 @@
     <div id="team" class="tab-content">
         <h2>Team & Investment</h2>
 
-        <h3>Team Structure</h3>
-        <p><strong>Sajin Nair — Fractional CMO</strong> leads positioning, messaging, and GTM system development. Engagement: paid monthly in advance.</p>
-        <h4>Scope of Engagement</h4>
+        <h3>Investment Overview</h3>
+        <div class="intro">
+            <p><strong>Total 12-Month Investment: Fractional CMO + Inside Sales Infrastructure</strong></p>
+            <p>Sajin Nair (Fractional CMO) + 3 inside sales hires + infrastructure = $300K–$500K total investment for Year 1 GTM build. Conservative model assumes phased hiring and lean operations.</p>
+        </div>
+
+        <h3>Fractional CMO: Sajin Nair</h3>
         <ul>
-            <li><strong>Months 1–2 (Positioning & Strategy):</strong> Validate ICP and buyer personas. Test 3+ positioning variants with 10+ prospect conversations. Create messaging playbook. Identify 50 target accounts.</li>
-            <li><strong>Months 3–6 (Asset Creation & Optimization):</strong> Conduct 2–3 strategy calls per week with prospects. Coach sales team on messaging. Create case study. Build 5+ email sequences. Optimize call scripts based on real feedback.</li>
-            <li><strong>Months 7–12 (Strategic Engagement & Scale):</strong> Direct engagement with high-value prospects. Thought leadership direction. GTM system refinement. Year 2 planning and strategy shift.</li>
+            <li><strong>Compensation:</strong> 2 Lakhs INR / month (≈$2,400 USD equivalent), paid monthly in advance</li>
+            <li><strong>Annual Commitment:</strong> 24 Lakhs INR ($28,800 USD equivalent)</li>
+            <li><strong>Scope:</strong> 15–20 hours/week strategic engagement (not full-time employee; other client engagements permitted)</li>
         </ul>
 
-        <h3>Inside Sales Team</h3>
+        <h4>Months 1–2: Positioning & Strategy</h4>
         <ul>
-            <li><strong>1 existing inside sales professional</strong> (account executive baseline)</li>
-            <li><strong>3 new inside sales hires:</strong> 1 BDR (discovery/qualification), 1 Account Executive (deal development/closure), 1 Sales Ops/Enablement (playbook, CRM, analytics)</li>
+            <li>Validate ICP and buyer personas (10 exploratory conversations)</li>
+            <li>Test 3+ positioning variants with real prospects</li>
+            <li>Create messaging playbook (1 document, 5–8 pages)</li>
+            <li>Develop call scripts and objection responses</li>
+            <li>Identify 50-company target account list</li>
+            <li>Weekly strategy calls + coaching with sales team</li>
         </ul>
 
-        <h3>CognitivZen Funds & Resources</h3>
+        <h4>Months 3–6: Asset Creation & Validation</h4>
         <ul>
-            <li>Sales team compensation, ramp, and benefits</li>
-            <li>CRM software (HubSpot, Pipedrive, Salesforce)</li>
-            <li>Sales enablement tools (Gong, Outreach)</li>
-            <li>Content production and asset creation (copywriting, design, video)</li>
-            <li>Marketing automation and email sequences</li>
-            <li>Thought leadership publishing and distribution</li>
+            <li>Conduct 2–3 strategy calls/week with real prospects (40–60 conversations)</li>
+            <li>Create case study (1 customer deep-dive, 3–4 pages)</li>
+            <li>Create proof-of-value document</li>
+            <li>Build 5+ email sequences</li>
+            <li>Optimize call scripts based on live feedback</li>
+            <li>Coach sales team on handling objections</li>
+            <li>Weekly 1:1s with sales lead; monthly team training</li>
+        </ul>
+
+        <h4>Months 7–12: Strategic Engagement & Scaling</h4>
+        <ul>
+            <li>Direct engagement with 5–10 high-value prospects</li>
+            <li>Thought leadership strategy (LinkedIn articles, guest publications)</li>
+            <li>GTM system refinement (monthly playbook updates)</li>
+            <li>Pilot engagement guidance and close support</li>
+            <li>Year 2 strategy and market expansion planning</li>
+            <li>Bi-weekly strategic alignment calls; quarterly business reviews</li>
+        </ul>
+
+        <h3>Inside Sales Team (3 New Hires)</h3>
+        <table>
+            <tr>
+                <th>Role</th>
+                <th>Responsibility</th>
+                <th>Est. Annual Cost</th>
+                <th>Ramp Timeline</th>
+            </tr>
+            <tr>
+                <td><strong>BDR (Business Development Rep)</strong></td>
+                <td>Discovery calls, qualification, initial pipeline development</td>
+                <td>$60K–$90K + commission/bonus</td>
+                <td>Months 1-3 ramp, productive by Month 3</td>
+            </tr>
+            <tr>
+                <td><strong>Account Executive</strong></td>
+                <td>Deal development, customer conversations, close support</td>
+                <td>$80K–$120K + commission</td>
+                <td>Months 2-4 ramp, productive by Month 4</td>
+            </tr>
+            <tr>
+                <td><strong>Sales Ops / Enablement</strong></td>
+                <td>CRM management, playbook updates, metrics tracking, training</td>
+                <td>$50K–$75K</td>
+                <td>Immediate (Month 1)</td>
+            </tr>
+            <tr>
+                <td><strong>Existing Inside Sales</strong></td>
+                <td>Account executive baseline; team lead role</td>
+                <td>Incumbent cost</td>
+                <td>N/A</td>
+            </tr>
+        </table>
+
+        <h3>Year 1 Infrastructure & Tools Budget</h3>
+        <ul>
+            <li><strong>CRM Software (HubSpot/Pipedrive/Salesforce):</strong> $10K–$20K</li>
+            <li><strong>Sales Enablement (Gong, Outreach, email tools):</strong> $8K–$15K</li>
+            <li><strong>Content Production (copywriting, design, video):</strong> $20K–$40K</li>
+            <li><strong>Marketing Automation & Email Platform:</strong> $5K–$10K</li>
+            <li><strong>LinkedIn Sales Navigator / Prospecting Tools:</strong> $3K–$5K</li>
+            <li><strong>Thought Leadership Publishing & Distribution:</strong> $5K–$10K</li>
+            <li><strong>Other (travel, training, subscriptions):</strong> $10K–$15K</li>
+        </ul>
+        <p><strong>Total Infrastructure Budget: $61K–$115K</strong></p>
+
+        <h3>Year 1 Total Investment Estimate</h3>
+        <ul>
+            <li>Fractional CMO (Sajin Nair): $28.8K USD (24L INR)</li>
+            <li>Inside Sales Ramp (3 new hires, 9-12 months): $190K–$285K</li>
+            <li>Infrastructure & Tools: $61K–$115K</li>
+            <li><strong>Grand Total: $280K–$429K USD for Year 1</strong></li>
+        </ul>
+        <p><strong>Conservative Model (Low End): $280K invested for $250–500K pipeline output</strong></p>
+        <p><strong>Aggressive Model (High End): $429K invested for $400–750K pipeline output</strong></p>
+
+        <h3>Success Metrics & Accountability</h3>
+        <ul>
+            <li><strong>Fractional CMO (Sajin Nair):</strong> Accountable for positioning validation (50+ conversations at 70%+ resonance), asset creation (case study, email sequences, playbook delivered), GTM system built (weekly rhythm deployed, team trained, playbook updated monthly).</li>
+            <li><strong>BDR:</strong> 20 conversations/week, 30%+ qualification rate, pipeline pipeline < 60 days</li>
+            <li><strong>Account Executive:</strong> Handle warm handoffs from BDR, close 1–2 pilots by Month 8, support proof conversions</li>
+            <li><strong>Sales Ops:</strong> CRM adoption 100%, weekly reporting, playbook version control, team training delivery</li>
         </ul>
     </div>
 
